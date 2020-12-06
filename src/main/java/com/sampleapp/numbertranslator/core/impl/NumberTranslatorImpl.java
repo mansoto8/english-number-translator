@@ -14,16 +14,21 @@ public class NumberTranslatorImpl implements NumberTranslator {
     private String[] tens = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
     public String translate(long number) {
-        String output;
+
+        String output = "";
+        if (number < 0) {
+            output += "Negative ";
+            number *= -1;
+        }
 
         if (number < ONE_THOUSAND) {
-            output = getNumberLessThanOneThousand(number, true);
-        } else if(number < ONE_MILLION) {
-            output = getNumberBetweenOneThousandAndOneMillion(number);
-        } else if(number < ONE_BILLION) {
-            output = getNumberBetweenOneMillionAndOneBillion(number);
+            output += getNumberLessThanOneThousand(number, true);
+        } else if (number < ONE_MILLION) {
+            output += getNumberBetweenOneThousandAndOneMillion(number);
+        } else if (number < ONE_BILLION) {
+            output += getNumberBetweenOneMillionAndOneBillion(number);
         } else {
-            output = getNumberBetweenOneBillionTenBillion(number);
+            output += getNumberBetweenOneBillionTenBillion(number);
         }
 
         return capitalize(output);
@@ -100,7 +105,7 @@ public class NumberTranslatorImpl implements NumberTranslator {
         long leftoverOfInput = number % ONE_THOUSAND;
 
         String text = "";
-        if(thousandsOfInput != 0) {
+        if (thousandsOfInput != 0) {
             text = getNumberLessThanOneThousand(thousandsOfInput, false) + " thousand";
         }
 
@@ -122,7 +127,7 @@ public class NumberTranslatorImpl implements NumberTranslator {
         long leftoverOfInput = number % ONE_MILLION;
 
         String text = "";
-        if(millionsOfInput != 0) {
+        if (millionsOfInput != 0) {
             text = getNumberLessThanOneThousand(millionsOfInput, false) + " million";
         }
         String leftover = "";

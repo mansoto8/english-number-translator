@@ -118,7 +118,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenOneHundredThousandAndOneMillionThousand() {
+    public void translateNumber_betweenOneHundredThousandAndOneBillion() {
 
         String[] expectedValues = {
                 "One million",
@@ -170,5 +170,25 @@ public class NumberTranslatorImplTest {
         assertEquals(expectedValues[8], numberTranslator.translate(8008000001l));
         assertEquals(expectedValues[9], numberTranslator.translate(9900000000l));
         assertEquals(expectedValues[10], numberTranslator.translate(9999999999l));
+    }
+
+    @Test
+    public void translateNumber_negativeNumbers() {
+        String[] expectedValues = {
+                "Negative two",
+                "Negative fourteen",
+                "Negative twenty one",
+                "Negative three hundred and eleven",
+                "Negative three hundred thousand eight hundred and ninety",
+                "Negative sixty million seven hundred eight thousand nine hundred and one",
+                "Negative nine billion nine hundred ninety nine million nine hundred ninety nine thousand nine hundred and ninety nine"};
+
+        assertEquals(expectedValues[0], numberTranslator.translate(-2l));
+        assertEquals(expectedValues[1], numberTranslator.translate(-14l));
+        assertEquals(expectedValues[2], numberTranslator.translate(-21l));
+        assertEquals(expectedValues[3], numberTranslator.translate(-311l));
+        assertEquals(expectedValues[4], numberTranslator.translate(-300890l));
+        assertEquals(expectedValues[5], numberTranslator.translate(-60708901l));
+        assertEquals(expectedValues[6], numberTranslator.translate(-9999999999l));
     }
 }
