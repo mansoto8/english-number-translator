@@ -12,10 +12,12 @@ public class NumberTranslatorImpl implements NumberTranslator {
     public String translate(long number) {
         String output;
 
-        if (number / 10 < 100) {
+        if (number < 1000) {
             output = getNumberLessThanOneThousand(number, true);
+        } else if(number < 1000000) {
+            output = getNumberBetweenOneThousandAndOneMillion(number);
         } else {
-            output = getNumberBetweenOneThousandAndOneHundredThousand(number);
+            output = getNumberBetweenOneMillionAndOneThousandMillion(number);
         }
 
         return capitalize(output);
@@ -87,19 +89,41 @@ public class NumberTranslatorImpl implements NumberTranslator {
         return text;
     }
 
-    private String getNumberBetweenOneThousandAndOneHundredThousand(long number) {
-        int thousandsOfInput = (int) number / 1000;
-        int leftoverOfInput = (int) number % 1000;
+    private String getNumberBetweenOneThousandAndOneMillion(long number) {
+        long thousandsOfInput = number >= 1000 ? number / 1000 : 0;
+        long leftoverOfInput = number % 1000;
 
-        String text = getNumberLessThanOneThousand(thousandsOfInput, false);
+        String text = "";
+        if(thousandsOfInput != 0) {
+            text = getNumberLessThanOneThousand(thousandsOfInput, false) + " thousand";
+        }
+
         String leftover = "";
-
         if (leftoverOfInput != 0) {
             leftover = leftoverOfInput < 100 ? ConnectorType.AND.getText() : ConnectorType.SPACE.getText();
             leftover += getNumberLessThanOneThousand(leftoverOfInput, true);
         }
 
-        text += " thousand";
+        if (!leftover.isBlank()) {
+            text += leftover;
+        }
+
+        return text;
+    }
+
+    private String getNumberBetweenOneMillionAndOneThousandMillion(long number) {
+        long millionsOfInput = number / 1000000;
+        long leftoverOfInput = number % 1000000;
+
+        String text = getNumberLessThanOneThousand(millionsOfInput, false);
+        String leftover = "";
+
+        if (leftoverOfInput != 0) {
+            leftover = leftoverOfInput < 1000 ? ConnectorType.EMPTY.getText() : ConnectorType.SPACE.getText();
+            leftover += getNumberBetweenOneThousandAndOneMillion(leftoverOfInput);
+        }
+
+        text += " million";
         if (!leftover.isBlank()) {
             text += leftover;
         }
