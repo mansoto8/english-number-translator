@@ -16,13 +16,19 @@ public class NumberTranslatorImplTest {
     private String[] betweenOneHundredAndOneThousand = {"One hundred", "One hundred and one", "Two hundred and ten",
             "Three hundred and eleven", "Four hundred and twenty one", "Five hundred", "Six hundred and thirty one",
             "Seven hundred", "Eight hundred", "Nine hundred", "Nine hundred and ninety nine"};
+    private String[] betweenOneThousandAndOneHundredThousand = {"One thousand", "Ten thousand and two",
+            "Thirteen thousand and forty", "One hundred thousand five hundred", "Two hundred thousand six hundred and seven",
+            "Three hundred thousand eight hundred and ninety", "Four hundred one thousand",
+            "Five hundred twenty thousand", "Six hundred thirty four thousand",
+            "Seven hundred fifty six thousand and seven", "Eight hundred eighty nine thousand one hundred and two",
+            "Nine hundred ninety nine thousand nine hundred and ninety nine"};
 
     NumberTranslator numberTranslator = new NumberTranslatorImpl();
 
     @Test
     public void translateNumber_firstTen() {
-        for(int i = 0; i < 10; i++) {
-            String output = numberTranslator.translate((long)i);
+        for (int i = 0; i < 10; i++) {
+            String output = numberTranslator.translate((long) i);
 
             assertEquals(firstTen[i], output);
         }
@@ -30,8 +36,8 @@ public class NumberTranslatorImplTest {
 
     @Test
     public void translateNumber_betweenTenAndTwenty() {
-        for(int i = 0; i < 10; i++) {
-            String output = numberTranslator.translate(i+10);
+        for (int i = 0; i < 10; i++) {
+            String output = numberTranslator.translate(i + 10);
 
             assertEquals(teens[i], output);
         }
@@ -64,5 +70,21 @@ public class NumberTranslatorImplTest {
         assertEquals(betweenOneHundredAndOneThousand[8], numberTranslator.translate(800l));
         assertEquals(betweenOneHundredAndOneThousand[9], numberTranslator.translate(900l));
         assertEquals(betweenOneHundredAndOneThousand[10], numberTranslator.translate(999l));
+    }
+
+    @Test
+    public void translateNumber_betweenOneThousandAndOneHundredThousand() {
+        assertEquals(betweenOneThousandAndOneHundredThousand[0], numberTranslator.translate(1000l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[1], numberTranslator.translate(10002l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[2], numberTranslator.translate(13040l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[3], numberTranslator.translate(100500l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[4], numberTranslator.translate(200607l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[5], numberTranslator.translate(300890l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[6], numberTranslator.translate(401000l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[7], numberTranslator.translate(520000l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[8], numberTranslator.translate(634000l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[9], numberTranslator.translate(756007l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[10], numberTranslator.translate(889102l));
+        assertEquals(betweenOneThousandAndOneHundredThousand[11], numberTranslator.translate(999999l));
     }
 }
