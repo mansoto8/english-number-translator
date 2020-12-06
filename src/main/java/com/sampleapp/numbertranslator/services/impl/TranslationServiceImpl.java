@@ -22,7 +22,7 @@ public class TranslationServiceImpl implements TranslationService {
     NumberTranslator numberTranslator;
 
     public OutputDTO translateNumber(Long number) {
-        return new OutputDTO(numberTranslator.translateNumber(number));
+        return new OutputDTO(numberTranslator.translate(number));
     }
 
     public List<TranslationDTO> getUserTranslations() {
