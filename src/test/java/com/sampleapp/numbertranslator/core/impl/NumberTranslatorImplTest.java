@@ -11,8 +11,9 @@ public class NumberTranslatorImplTest {
     private String[] firstTen = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
     private String[] teens = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
             "Eighteen", "Nineteen"};
+    private String[] betweenTwentyAndOneHundred = {"Twenty", "Twenty one", "Thirty two", "Forty three", "Fifty four",
+            "Sixty five", "Seventy six", "Eighty seven", "Ninety eight", "Ninety nine"};
 
-    @InjectMocks
     NumberTranslator numberTranslator = new NumberTranslatorImpl();
 
     @Test
@@ -31,5 +32,20 @@ public class NumberTranslatorImplTest {
 
             assertEquals(teens[i], output);
         }
+    }
+
+    @Test
+    public void translateNumber_betweenTwentyAndOneHundred() {
+        assertEquals(betweenTwentyAndOneHundred[0], numberTranslator.translate(20l));
+        assertEquals(betweenTwentyAndOneHundred[1], numberTranslator.translate(21l));
+        assertEquals(betweenTwentyAndOneHundred[2], numberTranslator.translate(32l));
+        assertEquals(betweenTwentyAndOneHundred[3], numberTranslator.translate(43l));
+        assertEquals(betweenTwentyAndOneHundred[4], numberTranslator.translate(54l));
+        assertEquals(betweenTwentyAndOneHundred[5], numberTranslator.translate(65l));
+        assertEquals(betweenTwentyAndOneHundred[6], numberTranslator.translate(76l));
+        assertEquals(betweenTwentyAndOneHundred[7], numberTranslator.translate(87l));
+        assertEquals(betweenTwentyAndOneHundred[8], numberTranslator.translate(98l));
+        assertEquals(betweenTwentyAndOneHundred[9], numberTranslator.translate(99l));
+
     }
 }
