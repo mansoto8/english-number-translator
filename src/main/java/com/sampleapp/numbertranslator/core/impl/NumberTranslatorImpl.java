@@ -12,19 +12,21 @@ public class NumberTranslatorImpl implements NumberTranslator {
         String output = "";
 
         if (number / 10 < 1) {
-            output = getNumberBetweenTen(number);
-        } else if (number / 10 < 100) {
+            output = getNumberBetweenZeroAndTen(number);
+        } else if (number / 10 < 10) {
             if (number < 20) {
                 output = getNumberBetweenTenAndTwenty(number);
             } else {
                 output = getNumberBetweenTwentyAndOneHundred(number);
             }
+        } else if (number / 10 < 100 ) {
+            output = getNumberBetweenOneHundredAndOneThousand(number);
         }
 
         return capitalize(output);
     }
 
-    private String getNumberBetweenTen(long number) {
+    private String getNumberBetweenZeroAndTen(long number) {
         return firstTen[(int) number];
     }
 
@@ -41,6 +43,25 @@ public class NumberTranslatorImpl implements NumberTranslator {
 
         if (leftover != 0) {
             text += " " + firstTen[leftover];
+        }
+
+        return text;
+    }
+
+    private String getNumberBetweenOneHundredAndOneThousand(long number) {
+        int hundredsOfInput = (int) number / 100;
+        int leftover = (int) number % 100;
+
+        String text = firstTen[hundredsOfInput] + " hundred";
+
+        if (leftover != 0) {
+            if(leftover < 10) {
+                text += " and " + getNumberBetweenZeroAndTen(leftover);
+            } else if(leftover < 20) {
+                text += " and " + getNumberBetweenTenAndTwenty(leftover);
+            } else {
+                text += " and " + getNumberBetweenTwentyAndOneHundred(leftover);
+            }
         }
 
         return text;
