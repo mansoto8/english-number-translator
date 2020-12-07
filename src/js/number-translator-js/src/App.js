@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TranslatorForm from "./components/TranslatorForm";
+import TranslationHistory from "./components/TranslationHistory";
 
 class App extends Component {
   state = {
@@ -27,7 +28,6 @@ class App extends Component {
       },
       body: JSON.stringify(item),
     });
-    //this.props.history.push('/groups');
   }
 
   render() {
@@ -43,6 +43,7 @@ class App extends Component {
               English Number Translator
           </header>
           <TranslatorForm/>
+          <TranslationHistory/>
         </div>
     );
   }
