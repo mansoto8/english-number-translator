@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container, Form, FormGroup, Input, Label, FormFeedback, InputGroup} from 'reactstrap';
+import {Container, FormGroup, Label, FormFeedback, Form, Input, InputGroup, Button} from 'reactstrap';
 import './TranslatorForm.css';
 
 class TranslatorForm extends Component {
@@ -40,22 +40,15 @@ class TranslatorForm extends Component {
         let number = item.number;
         if (!this.isValidNumberFormat(number)) {
             validate.number = 'invalid-number-format';
-            console.log("Validate ", validate);
             this.setState({validate});
             return;
-        } else {
-            validate.number = 'valid-number-format';
-            console.log("Validate ", validate);
-            this.setState({validate});
         }
 
         if (number.indexOf(',') > 0) {
             number = number.replace(/,/g, '');
         }
 
-        console.log("ABS: ",Math.abs(number));
-        if(Math.abs(number)>9999999999) {
-            console.log("Number too big");
+        if (Math.abs(number) > 9999999999) {
             validate.number = 'invalid-number-size';
             this.setState({validate});
             return;
@@ -71,7 +64,8 @@ class TranslatorForm extends Component {
 
         const resp = await translation.json();
         item.translation = resp.output;
-        this.setState({item});
+        validate.number = 'valid-number-format';
+        this.setState({item, validate});
     }
 
     isValidNumberFormat(number) {
@@ -85,13 +79,13 @@ class TranslatorForm extends Component {
             let validCommaIndex = size - 4;
             for (let i = size - 1; i >= 0; i--) {
                 const character = number.charAt(i);
-                if(character=='-') {
-                    if(i==0) {
-                        return number.charAt(i+1)!=',';
+                if (character == '-') {
+                    if (i == 0) {
+                        return number.charAt(i + 1) != ',';
                     }
                 }
                 if (i == validCommaIndex) {
-                    if(character == ',' && i!=0) {
+                    if (character == ',' && i != 0) {
                         validCommaIndex -= 4;
                     } else {
                         return false;
@@ -104,12 +98,10 @@ class TranslatorForm extends Component {
             }
         }
 
-        return commaIndex>=0 ? true : !isNaN(number);
+        return commaIndex >= 0 ? true : !isNaN(number);
     }
 
-    render() {
-        const {item,validate} = this.state;
-
+    getErrorMessage(validate) {
         let message;
 
         switch (validate.number) {
@@ -123,15 +115,23 @@ class TranslatorForm extends Component {
                 message = '';
         }
 
+        return message;
+    }
+
+    render() {
+        const {item, validate} = this.state;
+
+        const errorMessage = this.getErrorMessage(validate);
+
         return <div>
             <Container>
                 <Form onSubmit={this.handleSubmit} className={"translator-form"}>
                     <InputGroup id="inputGroupNumber">
                         <Input type="text" name="number" id="number-input" value={item.number || ''}
-                               valid={validate.number === 'valid-number-format'}
-                               invalid={message != ''}
+                               valid={errorMessage == ''}
+                               invalid={errorMessage != ''}
                                onChange={this.handleChange} placeholder="Enter a number"/>
-                        <FormFeedback id="formFeedBackNumber" invalid="{validate.number === 'invalid-number-format'}">{message}</FormFeedback>
+                        <FormFeedback id="formFeedBackNumber" invalid="true">{errorMessage}</FormFeedback>
                     </InputGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Translate</Button>
