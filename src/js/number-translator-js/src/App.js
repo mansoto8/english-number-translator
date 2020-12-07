@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TranslatorForm from "./components/TranslatorForm";
 
 class App extends Component {
   state = {
@@ -26,7 +27,7 @@ class App extends Component {
       },
       body: JSON.stringify(item),
     });
-    this.props.history.push('/groups');
+    //this.props.history.push('/groups');
   }
 
   render() {
@@ -39,25 +40,9 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <div className="App-intro">
-              <h2>Translation list</h2>
-                  <div>
-                    <table>
-                      <tr>
-                        <th>Number</th>
-                        <th>translation</th>
-                      </tr>
-                      {translations.length==0 ? (<p>No registers</p>) : (<p></p>)}
-                      {translations.map(translation =>
-                      <tr>
-                        <td>{translation.number}</td>
-                        <td>{translation.translation}</td>
-                      </tr>
-                      )}
-                    </table>
-                  </div>
-            </div>
+              English Number Translator
           </header>
+          <TranslatorForm/>
         </div>
     );
   }

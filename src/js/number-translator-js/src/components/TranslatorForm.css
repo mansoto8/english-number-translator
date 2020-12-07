@@ -1,0 +1,30 @@
+.translator-form {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.result-div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#translation-container {
+    width: 1200px;
+}
+
+#translation-output {
+    width: 900px;
+}
+
+#number-input {
+    width: 200px;
+    margin-right: 20px;
+}
+
+#translation-output-label {
+    padding-top: 5px;
+    width: 200px;
+    margin-right: 20px;
+}
