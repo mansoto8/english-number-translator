@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
-import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
+import {Button, Container, Form, FormGroup, Input, Label, FormFeedback, InputGroup} from 'reactstrap';
 import './TranslatorForm.css';
 
 class TranslatorForm extends Component {
 
     emptyItem = {
-        number: 0,
-        translation: ''
+        number: undefined,
+        translation: '',
+    };
+
+    validate = {
+        number: 'valid-number-format',
     };
 
     constructor(props) {
         super(props);
         this.state = {
             item: this.emptyItem,
+            validate: this.validate,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.isValidNumberFormat = this.isValidNumberFormat.bind(this);
     }
 
     handleChange(event) {
@@ -29,9 +35,33 @@ class TranslatorForm extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        let {item} = this.state;
+        let {item, validate} = this.state;
 
-        const translation = await fetch('/api/numbers' + (item.number ? '/' + item.number : ''), {
+        let number = item.number;
+        if (!this.isValidNumberFormat(number)) {
+            validate.number = 'invalid-number-format';
+            console.log("Validate ", validate);
+            this.setState({validate});
+            return;
+        } else {
+            validate.number = 'valid-number-format';
+            console.log("Validate ", validate);
+            this.setState({validate});
+        }
+
+        if (number.indexOf(',') > 0) {
+            number = number.replace(/,/g, '');
+        }
+
+        console.log("ABS: ",Math.abs(number));
+        if(Math.abs(number)>9999999999) {
+            console.log("Number too big");
+            validate.number = 'invalid-number-size';
+            this.setState({validate});
+            return;
+        }
+
+        const translation = await fetch('/api/numbers/' + number, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -44,15 +74,68 @@ class TranslatorForm extends Component {
         this.setState({item});
     }
 
+    isValidNumberFormat(number) {
+        if (number == undefined || number == null || number.length == 0) {
+            return false;
+        }
+
+        const commaIndex = number.indexOf(',');
+        if (commaIndex >= 0) {
+            const size = number.length;
+            let validCommaIndex = size - 4;
+            for (let i = size - 1; i >= 0; i--) {
+                const character = number.charAt(i);
+                if(character=='-') {
+                    if(i==0) {
+                        return number.charAt(i+1)!=',';
+                    }
+                }
+                if (i == validCommaIndex) {
+                    if(character == ',' && i!=0) {
+                        validCommaIndex -= 4;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    if (isNaN(character)) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return commaIndex>=0 ? true : !isNaN(number);
+    }
+
     render() {
-        const {item} = this.state;
+        const {item,validate} = this.state;
+
+        let message;
+
+        switch (validate.number) {
+            case 'invalid-number-format':
+                message = 'Incorrect number format';
+                break;
+            case  'invalid-number-size':
+                message = 'Number is too big. Max allowed is +/- 9,999,999,999';
+                break;
+            default:
+                message = '';
+        }
 
         return <div>
             <Container>
                 <Form onSubmit={this.handleSubmit} className={"translator-form"}>
-                    <Input type="number" name="number" id="number-input" value={item.number || ''}
-                           onChange={this.handleChange} placeholder="Enter a number"/>
-                    <Button color="primary" type="submit">Translate</Button>{' '}
+                    <InputGroup id="inputGroupNumber">
+                        <Input type="text" name="number" id="number-input" value={item.number || ''}
+                               valid={validate.number === 'valid-number-format'}
+                               invalid={message != ''}
+                               onChange={this.handleChange} placeholder="Enter a number"/>
+                        <FormFeedback id="formFeedBackNumber" invalid="{validate.number === 'invalid-number-format'}">{message}</FormFeedback>
+                    </InputGroup>
+                    <FormGroup>
+                        <Button color="primary" type="submit">Translate</Button>
+                    </FormGroup>
                 </Form>
                 <div className="result-div">
                     <Label for="translation-output" id={"translation-output-label"}>The number translated is: </Label>

@@ -18,13 +18,12 @@
     width: 900px;
 }
 
-#number-input {
+#translation-output-label {
+    padding-top: 5px;
     width: 200px;
     margin-right: 20px;
 }
-
-#translation-output-label {
-    padding-top: 5px;
+#inputGroupNumber {
     width: 200px;
     margin-right: 20px;
 }

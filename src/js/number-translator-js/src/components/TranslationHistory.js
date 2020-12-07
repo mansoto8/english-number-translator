@@ -47,7 +47,7 @@ class TranslationHistory extends Component {
                         <tbody>
                             {translations.map(translation =>
                                 <tr key={translation.number}>
-                                    <td>{translation.number}</td>
+                                    <td>{translation.number.toLocaleString()}</td>
                                     <td>{translation.translation}</td>
                                 </tr>
                             )}
