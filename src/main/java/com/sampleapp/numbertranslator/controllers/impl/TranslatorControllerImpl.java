@@ -3,22 +3,31 @@ package com.sampleapp.numbertranslator.controllers.impl;
 import com.sampleapp.numbertranslator.controllers.TranslatorController;
 import com.sampleapp.numbertranslator.dtos.OutputDTO;
 import com.sampleapp.numbertranslator.dtos.TranslationDTO;
+import com.sampleapp.numbertranslator.exceptions.InvalidNumberException;
+import com.sampleapp.numbertranslator.services.TranslationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Set;
 
+@RestController
 public class TranslatorControllerImpl implements TranslatorController {
 
-    @Override
-    public ResponseEntity<OutputDTO> translateNumber(@PathVariable("number") Long number) {
-        return null;
+    @Autowired
+    TranslationService translationService;
 
+    @Override
+    public ResponseEntity<OutputDTO> translateNumber(Long number) throws InvalidNumberException {
+        OutputDTO outputDTO = translationService.translateNumber(number);
+
+        return ResponseEntity.ok(outputDTO);
     }
 
-
     @Override
-    public ResponseEntity<List<TranslationDTO>> getTranslationHistory() {
-        return null;
+    public ResponseEntity<Set<TranslationDTO>> getTranslationHistory() {
+        Set<TranslationDTO> translations = translationService.getUserTranslations();
+
+        return ResponseEntity.ok(translations);
     }
 }

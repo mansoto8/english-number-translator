@@ -2,18 +2,23 @@ package com.sampleapp.numbertranslator.core.impl;
 
 import com.sampleapp.numbertranslator.core.ConnectorType;
 import com.sampleapp.numbertranslator.core.NumberTranslator;
+import com.sampleapp.numbertranslator.exceptions.InvalidNumberException;
 
 public class NumberTranslatorImpl implements NumberTranslator {
-    private static final long ONE_THOUSAND = 1000;
-    private static final long ONE_MILLION = 1000000;
-    private static final long ONE_BILLION = 1000000000;
+    private static final long ONE_THOUSAND = 1000l;
+    private static final long ONE_MILLION = 1000000l;
+    private static final long ONE_BILLION = 1000000000l;
+    private static final long MAX_NUMBER_ACCEPTED = 9999999999l;
 
     private String[] firstTen = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     private String[] teens = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
             "eighteen", "nineteen"};
     private String[] tens = {"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-    public String translate(long number) {
+    public String translate(long number) throws InvalidNumberException {
+        if (Math.abs(number) > MAX_NUMBER_ACCEPTED) {
+            throw new InvalidNumberException("Number is too large. Maximum is positive or negativ 9,999,999,999,999.");
+        }
 
         String output = "";
         if (number < 0) {

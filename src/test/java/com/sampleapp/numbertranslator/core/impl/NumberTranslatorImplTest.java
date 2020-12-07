@@ -1,16 +1,17 @@
 package com.sampleapp.numbertranslator.core.impl;
 
 import com.sampleapp.numbertranslator.core.NumberTranslator;
+import com.sampleapp.numbertranslator.exceptions.InvalidNumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberTranslatorImplTest {
 
-    NumberTranslator numberTranslator = new NumberTranslatorImpl();
+    private NumberTranslator numberTranslator = new NumberTranslatorImpl();
 
     @Test
-    public void translateNumber_firstTen() {
+    public void translateNumber_firstTen() throws InvalidNumberException {
         String[] expectedValues = {"Zero", "One", "Two", "Three", "Four", "Five",
                 "Six", "Seven", "Eight", "Nine"};
 
@@ -22,7 +23,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenTenAndTwenty() {
+    public void translateNumber_betweenTenAndTwenty() throws InvalidNumberException {
         String[] expectedValues = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
                 "Eighteen", "Nineteen"};
 
@@ -34,7 +35,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenTwentyAndOneHundred() {
+    public void translateNumber_betweenTwentyAndOneHundred() throws InvalidNumberException {
         String[] expectedValues = {
                 "Twenty",
                 "Twenty one",
@@ -60,7 +61,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenOneHundredAndOneThousand() {
+    public void translateNumber_betweenOneHundredAndOneThousand() throws InvalidNumberException {
         String[] expectedValues = {
                 "One hundred",
                 "One hundred and one",
@@ -88,7 +89,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenOneThousandAndOneHundredThousand() {
+    public void translateNumber_betweenOneThousandAndOneHundredThousand() throws InvalidNumberException {
         String[] expectedValues = {
                 "One thousand",
                 "Ten thousand and two",
@@ -118,7 +119,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenOneHundredThousandAndOneBillion() {
+    public void translateNumber_betweenOneHundredThousandAndOneBillion() throws InvalidNumberException {
 
         String[] expectedValues = {
                 "One million",
@@ -145,7 +146,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_betweenOneBillionAndTenBillion() {
+    public void translateNumber_betweenOneBillionAndTenBillion() throws InvalidNumberException {
         String[] expectedValues = {
                 "One billion",
                 "Two billion and one",
@@ -173,7 +174,7 @@ public class NumberTranslatorImplTest {
     }
 
     @Test
-    public void translateNumber_negativeNumbers() {
+    public void translateNumber_negativeNumbers() throws InvalidNumberException {
         String[] expectedValues = {
                 "Negative two",
                 "Negative fourteen",

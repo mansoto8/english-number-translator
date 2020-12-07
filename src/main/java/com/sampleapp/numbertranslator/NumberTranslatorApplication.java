@@ -1,6 +1,5 @@
 package com.sampleapp.numbertranslator;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sampleapp.numbertranslator.core.NumberTranslator;
 import com.sampleapp.numbertranslator.core.impl.NumberTranslatorImpl;
 import org.springframework.boot.SpringApplication;
