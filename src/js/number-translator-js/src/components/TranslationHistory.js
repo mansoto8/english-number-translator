@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Form} from 'reactstrap';
+import {Button, Container, Form} from 'reactstrap';
+import './TranslationHistory.css';
 
 class TranslationHistory extends Component {
 
@@ -10,10 +11,10 @@ class TranslationHistory extends Component {
         this.state = {
             translations: this.translations,
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.getHistory = this.getHistory.bind(this);
     }
 
-    async handleSubmit(event) {
+    async getHistory(event) {
         event.preventDefault();
 
         const response = await fetch('/api/numbers', {
@@ -32,30 +33,28 @@ class TranslationHistory extends Component {
         const {translations} = this.state;
 
         return <div>
-            <h2>Translation list</h2>
-            <div>
-                <Form onSubmit={this.handleSubmit}>
-                    <Button color="primary" type="submit">Check Translation History</Button>{' '}
-                </Form>
-                {translations.length == 0 ? (<p>No registers</p>) : (<p></p>)}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Number</th>
-                            <th>Translation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {translations.map(translation =>
-                            <tr key={translation.number}>
-                                <td>{translation.number}</td>
-                                <td>{translation.translation}</td>
+                <Container>
+                    <Button id="history-button" color="primary" type="button"
+                            onClick={this.getHistory}>Check Translation History</Button>
+                    {translations.length == 0 ? (<p>No registers</p>) : (<p></p>)}
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Translation</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {translations.map(translation =>
+                                <tr key={translation.number}>
+                                    <td>{translation.number}</td>
+                                    <td>{translation.translation}</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </Container>
             </div>
-        </div>
     }
 }
 
