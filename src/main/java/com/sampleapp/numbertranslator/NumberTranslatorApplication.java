@@ -6,6 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * Application that expose rest endpoints for managing and executing translation of numbers to its english textual
+ * representation. It also deploys a web UI that allows to easily interact with the rest endpoints.
+ */
 @SpringBootApplication
 public class NumberTranslatorApplication {
 

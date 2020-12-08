@@ -17,6 +17,9 @@ public class TranslatorControllerImpl implements TranslatorController {
     @Autowired
     TranslationService translationService;
 
+    /**
+     * {@inheritdoc}
+     */
     @Override
     public ResponseEntity<OutputDTO> translateNumber(Long number) throws InvalidNumberException {
         OutputDTO outputDTO = translationService.translateNumber(number);
@@ -24,6 +27,9 @@ public class TranslatorControllerImpl implements TranslatorController {
         return ResponseEntity.ok(outputDTO);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     @Override
     public ResponseEntity<Set<TranslationDTO>> getTranslationHistory() {
         Set<TranslationDTO> translations = translationService.getUserTranslations();
