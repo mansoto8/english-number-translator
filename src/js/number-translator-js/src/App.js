@@ -4,17 +4,11 @@ import TranslatorForm from "./components/translatorForm/TranslatorForm";
 import TranslationHistory from "./components/translationHistory/TranslationHistory";
 
 class App extends Component {
-    state = {
-        translations: []
-    };
-
     async componentDidMount() {
         this.setState(this.state);
     }
 
     render() {
-        const {translations} = this.state;
-
         return (
             <div className="App">
                 <header className="App-header">

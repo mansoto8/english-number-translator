@@ -69,7 +69,7 @@ class TranslatorForm extends Component {
     }
 
     isValidNumberFormat(number) {
-        if (number == undefined || number == null || number.length == 0) {
+        if (number === undefined || number === null || number.length === 0) {
             return false;
         }
 
@@ -79,13 +79,13 @@ class TranslatorForm extends Component {
             let validCommaIndex = size - 4;
             for (let i = size - 1; i >= 0; i--) {
                 const character = number.charAt(i);
-                if (character == '-') {
-                    if (i == 0) {
-                        return number.charAt(i + 1) != ',';
+                if (character === '-') {
+                    if (i === 0) {
+                        return number.charAt(i + 1) !== ',';
                     }
                 }
-                if (i == validCommaIndex) {
-                    if (character == ',' && i != 0) {
+                if (i === validCommaIndex) {
+                    if (character === ',' && i !== 0) {
                         validCommaIndex -= 4;
                     } else {
                         return false;
@@ -128,8 +128,8 @@ class TranslatorForm extends Component {
                 <Form onSubmit={this.handleSubmit} className={"translator-form"}>
                     <InputGroup id="inputGroupNumber">
                         <Input type="text" name="number" id="number-input" value={item.number || ''}
-                               valid={errorMessage == ''}
-                               invalid={errorMessage != ''}
+                               valid={errorMessage === ''}
+                               invalid={errorMessage !== ''}
                                onChange={this.handleChange} placeholder="Enter a number"/>
                         <FormFeedback id="formFeedBackNumber" invalid="true">{errorMessage}</FormFeedback>
                     </InputGroup>
