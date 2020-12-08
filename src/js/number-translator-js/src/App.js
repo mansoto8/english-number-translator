@@ -3,6 +3,10 @@ import './App.css';
 import TranslatorForm from "./components/translatorForm/TranslatorForm";
 import TranslationHistory from "./components/translationHistory/TranslationHistory";
 
+/**
+ * Main components that contains the form that allows to request number translations and a component
+ * that shows the history of requests.
+ */
 class App extends Component {
     async componentDidMount() {
         this.setState(this.state);

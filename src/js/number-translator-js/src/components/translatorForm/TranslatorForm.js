@@ -2,6 +2,10 @@ import {Container, FormGroup, Label, FormFeedback, Form, Input, InputGroup, Butt
 import React, {Component} from 'react';
 import './TranslatorForm.css';
 
+/**
+ * Component that contains a form that allows the user to send numbers and also a container
+ * that shows the result of the translation returned by the backend.
+ */
 class TranslatorForm extends Component {
 
     emptyItem = {
@@ -33,6 +37,14 @@ class TranslatorForm extends Component {
         this.setState({item});
     }
 
+    /**
+     * Sends the number to the REST endpoint that returns the translation. Previous
+     * to sending the request validations of format and size are performed, if the fail
+     * the state is updated with the error and no request is sent.
+     *
+     * @param event
+     * @returns {Promise<void>} With the text representation of the number
+     */
     async handleSubmit(event) {
         event.preventDefault();
         let {item, validate} = this.state;
@@ -68,6 +80,18 @@ class TranslatorForm extends Component {
         this.setState({item, validate});
     }
 
+    /**
+     * Validates if the number passed as parameter has the allowed format. Numbers
+     * entered by the user should be only either of the following two:
+     * - A sequence of numbers without any additional characters (just minus sign for negative numbers)
+     * Ex. 9999999 or -9999999
+     * - A number in english format .i.e. a sequence of numbers that separates each thousand by commas.
+     * Ex. 9,999,999 or -9,999,999
+     * If none of the previous conditions are met false is returned
+     *
+     * @param number
+     * @returns {boolean} True if the number is valid
+     */
     isValidNumberFormat(number) {
         if (number === undefined || number === null || number.length === 0) {
             return false;
@@ -101,6 +125,11 @@ class TranslatorForm extends Component {
         return commaIndex >= 0 ? true : !isNaN(number);
     }
 
+    /**
+     * Defines the message displayed to the user when number entered is incorrect
+     * @param validate Object stored in state that contains the output of validation in input parameters
+     * @returns {string} The error message or empty string if there is none
+     */
     getErrorMessage(validate) {
         let message;
 

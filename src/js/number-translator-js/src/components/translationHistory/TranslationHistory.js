@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Container, Button} from 'reactstrap';
 import './TranslationHistory.css';
 
+/**
+ * Components that displays a table where is shown the history of translations requested by the user.
+ */
 class TranslationHistory extends Component {
 
     translations = [];
