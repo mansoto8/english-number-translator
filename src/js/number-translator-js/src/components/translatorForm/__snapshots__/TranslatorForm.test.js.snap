@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders initial form 1`] = `
+<div>
+  <Container
+    tag="div"
+  >
+    <Form
+      className="translator-form"
+      onSubmit={[Function]}
+      tag="form"
+    >
+      <InputGroup
+        id="inputGroupNumber"
+        tag="div"
+      >
+        <Input
+          id="number-input"
+          invalid={false}
+          name="number"
+          onChange={[Function]}
+          placeholder="Enter a number"
+          type="text"
+          valid={true}
+          value=""
+        />
+        <FormFeedback
+          id="formFeedBackNumber"
+          invalid="true"
+          tag="div"
+        />
+      </InputGroup>
+      <FormGroup
+        tag="div"
+      >
+        <Button
+          color="primary"
+          id="translate-button"
+          tag="button"
+          type="submit"
+        >
+          Translate
+        </Button>
+      </FormGroup>
+    </Form>
+    <div
+      className="result-div"
+    >
+      <Label
+        for="translation-output"
+        id="translation-output-label"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        The number translated is: 
+      </Label>
+      <Input
+        id="translation-output"
+        name="translation-output"
+        readOnly={true}
+        type="text"
+        value=""
+      />
+    </div>
+  </Container>
+</div>
+`;

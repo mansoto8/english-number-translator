@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders App 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    English Number Translator
+  </header>
+  <div>
+    <div
+      className="container"
+    >
+      <form
+        className="translator-form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="input-group"
+          id="inputGroupNumber"
+        >
+          <input
+            className="is-valid form-control"
+            id="number-input"
+            name="number"
+            onChange={[Function]}
+            placeholder="Enter a number"
+            type="text"
+            value=""
+          />
+          <div
+            className="invalid-feedback"
+            id="formFeedBackNumber"
+            invalid="true"
+          >
+            
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-primary"
+            id="translate-button"
+            onClick={[Function]}
+            type="submit"
+          >
+            Translate
+          </button>
+        </div>
+      </form>
+      <div
+        className="result-div"
+      >
+        <label
+          className=""
+          htmlFor="translation-output"
+          id="translation-output-label"
+        >
+          The number translated is: 
+        </label>
+        <input
+          className="form-control"
+          id="translation-output"
+          name="translation-output"
+          readOnly={true}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="container"
+    >
+      <button
+        aria-label={null}
+        className="btn btn-primary"
+        id="history-button"
+        onClick={[Function]}
+        type="button"
+      >
+        Check Translation History
+      </button>
+      <table
+        id="history-table"
+      >
+        <thead>
+          <tr>
+            <th>
+              Number
+            </th>
+            <th>
+              Translation
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+      <p>
+        No registers
+      </p>
+    </div>
+  </div>
+</div>
+`;

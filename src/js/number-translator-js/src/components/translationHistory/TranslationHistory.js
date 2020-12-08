@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container,Button} from 'reactstrap';
+import {Container, Button} from 'reactstrap';
 import './TranslationHistory.css';
 
 class TranslationHistory extends Component {

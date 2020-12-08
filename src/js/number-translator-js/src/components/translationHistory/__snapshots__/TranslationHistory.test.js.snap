@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Translation history with register 1`] = `
+<div>
+  <Container
+    tag="div"
+  >
+    <Button
+      color="primary"
+      id="history-button"
+      onClick={[Function]}
+      tag="button"
+      type="button"
+    >
+      Check Translation History
+    </Button>
+    <table
+      id="history-table"
+    >
+      <thead>
+        <tr>
+          <th>
+            Number
+          </th>
+          <th>
+            Translation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          key="-1"
+        >
+          <td>
+            -1
+          </td>
+          <td>
+            Negative one
+          </td>
+        </tr>
+        <tr
+          key="20"
+        >
+          <td>
+            20
+          </td>
+          <td>
+            Twenty
+          </td>
+        </tr>
+        <tr
+          key="999"
+        >
+          <td>
+            999
+          </td>
+          <td>
+            Nine hundred and ninety nine
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p />
+  </Container>
+</div>
+`;
+
+exports[`renders Translation history without registers 1`] = `
+<div>
+  <Container
+    tag="div"
+  >
+    <Button
+      color="primary"
+      id="history-button"
+      onClick={[Function]}
+      tag="button"
+      type="button"
+    >
+      Check Translation History
+    </Button>
+    <table
+      id="history-table"
+    >
+      <thead>
+        <tr>
+          <th>
+            Number
+          </th>
+          <th>
+            Translation
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+    <p>
+      No registers
+    </p>
+  </Container>
+</div>
+`;

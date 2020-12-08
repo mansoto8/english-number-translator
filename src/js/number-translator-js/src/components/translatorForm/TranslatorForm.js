@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
 import {Container, FormGroup, Label, FormFeedback, Form, Input, InputGroup, Button} from 'reactstrap';
+import React, {Component} from 'react';
 import './TranslatorForm.css';
 
 class TranslatorForm extends Component {
@@ -134,7 +134,7 @@ class TranslatorForm extends Component {
                         <FormFeedback id="formFeedBackNumber" invalid="true">{errorMessage}</FormFeedback>
                     </InputGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Translate</Button>
+                        <Button id="translate-button" color="primary" type="submit">Translate</Button>
                     </FormGroup>
                 </Form>
                 <div className="result-div">
