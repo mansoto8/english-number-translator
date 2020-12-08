@@ -17,7 +17,7 @@ public class NumberTranslatorImpl implements NumberTranslator {
 
     public String translate(long number) throws InvalidNumberException {
         if (Math.abs(number) > MAX_NUMBER_ACCEPTED) {
-            throw new InvalidNumberException("Number is too large. Maximum is positive or negativ 9,999,999,999,999.");
+            throw new InvalidNumberException("Number is too large. Maximum is positive or negative 9,999,999,999.");
         }
 
         String output = "";
@@ -33,7 +33,7 @@ public class NumberTranslatorImpl implements NumberTranslator {
         } else if (number < ONE_BILLION) {
             output += getNumberBetweenOneMillionAndOneBillion(number);
         } else {
-            output += getNumberBetweenOneBillionTenBillion(number);
+            output += getNumberBetweenOneBillionAndTenBillion(number);
         }
 
         return capitalize(output);
@@ -149,7 +149,7 @@ public class NumberTranslatorImpl implements NumberTranslator {
         return text;
     }
 
-    private String getNumberBetweenOneBillionTenBillion(long number) {
+    private String getNumberBetweenOneBillionAndTenBillion(long number) {
         long billionsOfInput = number / ONE_BILLION;
         long leftoverOfInput = number % ONE_BILLION;
 

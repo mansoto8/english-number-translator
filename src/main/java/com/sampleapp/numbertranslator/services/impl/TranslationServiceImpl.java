@@ -30,6 +30,7 @@ public class TranslationServiceImpl implements TranslationService {
             translation = translationDTO.get().getTranslation();
         } else {
             translation = numberTranslator.translate(number);
+            userTranslations.add(new TranslationDTO(number, translation));
         }
 
         return new OutputDTO(translation);
