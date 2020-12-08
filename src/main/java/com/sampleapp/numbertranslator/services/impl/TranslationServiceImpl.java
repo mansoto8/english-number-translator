@@ -21,7 +21,7 @@ public class TranslationServiceImpl implements TranslationService {
     NumberTranslator numberTranslator;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public OutputDTO translateNumber(Long number) throws InvalidNumberException {
         String translation;
@@ -40,7 +40,7 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public Set<TranslationDTO> getUserTranslations() {
         return userTranslations;

@@ -18,7 +18,7 @@ public class TranslatorControllerImpl implements TranslatorController {
     TranslationService translationService;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     @Override
     public ResponseEntity<OutputDTO> translateNumber(Long number) throws InvalidNumberException {
@@ -28,7 +28,7 @@ public class TranslatorControllerImpl implements TranslatorController {
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Set<TranslationDTO>> getTranslationHistory() {
