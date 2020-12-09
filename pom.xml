@@ -181,6 +181,28 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <forkCount>3</forkCount>
+                            <reuseForks>true</reuseForks>
+                            <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                            <testFailureIgnore>true</testFailureIgnore>
+                            <includes>
+                                <includesFile>**/*Test.java</includesFile>
+                                <includesFile>**/*E2E.java</includesFile>
+                            </includes>
+                        </configuration>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
