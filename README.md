@@ -25,6 +25,7 @@ the javadoc files.
 ### UI (React)
 number-translator-js: base directory
 
+
     |
     |---src: Contains all of the application source code
     |
