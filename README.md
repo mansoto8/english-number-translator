@@ -85,6 +85,17 @@ Due that for e2e testing we use testcontainer library we need to have installed 
 to run those tests. Check the following page for details of the installation: 
 https://docs.docker.com/get-docker/
 
+Regarding the versions required for testcontainer:
+
+Linux - general	Docker v1.10	
+Mac OS X - Docker Toolbox	Docker Machine v0.8.0	
+Mac OS X - Docker for Mac	1.12.0	
+Windows - Docker Toolbox		Support is limited at present and this is not currently tested on a regular basis.
+Windows - Docker for Windows		Support is best-efforts at present. Only Linux Containers (LCOW) are supported at the moment. See Windows Support
+Windows - Windows Subsystem for Linux (WSL)	Docker v17.06	Support is best-efforts at present. Only Linux Containers (LCOW) are supported at the moment. See Windows Support.
+
+For more details visit this page: https://www.testcontainers.org/supported_docker_environment/
+
 ## Execution
 
 1. In the terminal go to the base package of the project (.../number-translator/)
