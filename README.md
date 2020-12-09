@@ -123,15 +123,10 @@ The docs can be accessed opening in the browser the file: './target/site/apidocs
 
 ## Testing
 
-### Functional tests
-
-For the functional tests dummy data is automatically populated in the database when the application
-starts in dev mode (default). Two accounts are created with account_number 1 and 2. For account 1
-a list of operations are created that help testing all the endpoints.
-
 #### Swagger
 
-1. Access http://localhost:8089/swagger-ui/#/
+The REST endpoints can be tested with swagger:
+1. Access http://localhost:8087/swagger-ui/#/
 2. Select try it out
 3. Fill the required fields 
 4. Execute
